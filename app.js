@@ -7,16 +7,15 @@ const gamesRouter = require('./routes/games');
 const categoriesRouter = require('./routes/categories');
 
 const connectToDatabase = require('./database/connect');
-const cors = require('./middlewares/cors');
 
-const CONFIG = require('./config')
+
+const CONFIG = require("./config")
 
 const app = express();
 
 connectToDatabase();
 
 app.use(
-  cors, 
   bodyParser.json(),
   express.static(path.join(__dirname, 'public')),
   usersRouter, 

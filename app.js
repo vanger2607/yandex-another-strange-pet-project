@@ -9,6 +9,6 @@ app.use(
   express.static(path.join(__dirname, "public")),
 );
 
-app.listen(CONFIG.port, () => {
-  console.log(`Server is running at PORT http://localhost:${CONFIG.port}`);
+app.listen(CONFIG.PORT, () => {
+  console.log(`Server is running at PORT http://localhost:${CONFIG.PORT}`);
 });

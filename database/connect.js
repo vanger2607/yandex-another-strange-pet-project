@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 
+const CONFIG = require("./config")
+
 const DB_URL = 'mongodb://localhost:27017/pindie';
 
 async function connectToDatabase() {
   try {
-    await mongoose.connect(DB_URL);
+    await mongoose.connect(CONFIG.DB_URL);
     console.log('Успешно подключились к MongoDB')
   }
   catch (err) {

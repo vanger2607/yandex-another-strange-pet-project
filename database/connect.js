@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const CONFIG = require("./config")
+const CONFIG = require("../config")
 
 
 

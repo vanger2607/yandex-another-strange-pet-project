@@ -1,14 +1,25 @@
-const express = require("express");
-const path = require("path");
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+
+const {usersRouter, gamesRouter, categoriesRouter} = require('./routes');
+
+
+const connectToDatabase = require('./database/connect');
 
 
 const CONFIG = require("./config")
+
 const app = express();
-console.log(CONFIG)
+
+connectToDatabase();
+
 app.use(
-  express.static(path.join(__dirname, "public")),
+  bodyParser.json(),
+  express.static(path.join(__dirname, 'public')),
+  usersRouter, 
+  gamesRouter, 
+  categoriesRouter
 );
 
-app.listen(CONFIG.PORT, () => {
-  console.log(`Server is running at PORT http://localhost:${CONFIG.PORT}`);
-});
+app.listen(CONFIG.PORT); 

@@ -1,18 +1,14 @@
 const express = require("express");
 const path = require("path");
-// Импортируем middleware
-const bodyParser = require("body-parser");
-const { cors } = require("./middlewares");
 
-const PORT = 3000;
+
+const CONFIG = require("./config")
 const app = express();
-
+console.log(CONFIG)
 app.use(
-  cors,
-  bodyParser.json(),
   express.static(path.join(__dirname, "public")),
 );
 
-app.listen(PORT, () => {
-  console.log(`Server is running at PORT http://localhost:${PORT}`);
+app.listen(CONFIG.PORT, () => {
+  console.log(`Server is running at PORT http://localhost:${CONFIG.PORT}`);
 });

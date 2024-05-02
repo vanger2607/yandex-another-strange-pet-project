@@ -2,8 +2,9 @@
  const usersRouter = require('express').Router();
   
  // Импортируем вспомогательные функции
- const findAllUsers = require('../middlewares/');
- const sendAllUsers = require('../controllers/');
+ const findAllUsers = require('../midllewares').findAllUsers;
+ console.log(findAllUsers)
+ const sendAllUsers = require('../controllers').sendAllUsers;
  
  // Обрабатываем GET-запрос с роутом '/categories'
  usersRouter.get('/users', findAllUsers, sendAllUsers);

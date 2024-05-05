@@ -22,4 +22,4 @@ const sendCategoryUpdated = (req, res) => {
 
 
 // Экспортируем контроллеры
-module.exports = { sendAllCategories, sendCategoryCreated, sendCategoryById, updateCategory };
+module.exports = { sendAllCategories, sendCategoryCreated, sendCategoryById, sendCategoryUpdated };

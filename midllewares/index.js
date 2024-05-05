@@ -1,4 +1,4 @@
-const { findAllUsers, findUserById, createUser } = require("./users");
+const { findAllUsers, findUserById, createUser, updateUser } = require("./users");
 const { findAllCategories, findCategoryById, createCategory, updateCategory } = require("./categories");
 const { findAllGames, findGameById, createGame, updateGame } = require("./games")
 module.exports = {
@@ -9,6 +9,7 @@ module.exports = {
     findAllUsers,
     findUserById,
     createUser,
+    updateUser,
     findAllGames,
     findGameById,
     createGame,

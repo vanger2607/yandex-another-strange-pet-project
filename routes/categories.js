@@ -4,7 +4,7 @@ const categoriesRouter = require('express').Router();
 
 const { findAllCategories, createCategory, findCategoryById, updateCategory } = require('../midllewares');
 
-const { sendAllCategories, sendCategoryCreate, sendCategoryById, sendCategoryUpdated } = require('../controllers');
+const { sendAllCategories, sendCategoryCreated, sendCategoryById, sendCategoryUpdated } = require('../controllers');
 
 // Обрабатываем GET-запрос с роутом '/categories'
 categoriesRouter.get('/categories', findAllCategories, sendAllCategories);
@@ -13,7 +13,7 @@ categoriesRouter.post(
     "/categories",
     findAllCategories,
     createCategory,
-    sendCategoryCreate
+    sendCategoryCreated
 );
 categoriesRouter.put(
     "/categories/:id", // Слушаем запросы по эндпоинту

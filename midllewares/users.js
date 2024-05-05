@@ -21,7 +21,7 @@ const createUser = async (req, res, next) => {
 };
 
 const findUserById = async (req, res, next) => {
-    console.log("GET /users/:id");
+    logger.info("GET /users/:id");
     try {
         req.user = await users.findById(req.params.id);
         next();
@@ -30,6 +30,18 @@ const findUserById = async (req, res, next) => {
         res.status(404).send(JSON.stringify({ message: "Пользователь не найден" }));
     }
 };
+const updateUser = async (req, res, next) => {
+    try {
+        // В метод передаём id из параметров запроса и объект с новыми свойствами
+        req.user = await users.findByIdAndUpdate(req.params.id, req.body);
+        next();
+    } catch (error) {
+        res.setHeader("Content-Type", "application/json");
+        res.status(400).send(JSON.stringify({ message: "Ошибка обновления игры" }));
+    }
+};
+
+
 
 // Экспортируем функцию поиска всех пользователей
-module.exports = { findAllUsers, createUser, findUserById };
+module.exports = { findAllUsers, createUser, findUserById, updateUser };

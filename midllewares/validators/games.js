@@ -15,4 +15,14 @@ const checkEmptyFields = async (req, res, next) => {
         next();
     }
 };
-module.exports = checkEmptyFields
+
+const checkIfCategoriesAvaliable = async (req, res, next) => {
+    // Проверяем наличие жанра у игры
+    if (!req.body.categories || req.body.categories.length === 0) {
+        res.setHeader("Content-Type", "application/json");
+        res.status(400).send(JSON.stringify({ message: "Выбери хотя бы одну категорию" }));
+    } else {
+        next();
+    }
+};
+module.exports = { checkEmptyFields, checkIfCategoriesAvaliable }

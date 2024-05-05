@@ -1,6 +1,6 @@
 // Импортируем модель
 const users = require("../models/user");
-const logger = require("@/logger")
+const logger = require("../logger")
 
 const findAllUsers = async (req, res, next) => {
     // По GET-запросу на эндпоинт /users найдём все документы пользователей

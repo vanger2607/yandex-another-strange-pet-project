@@ -1,5 +1,5 @@
 const games = require("../models/game");
-const logger = require("@/logger")
+const logger = require("../logger")
 const findAllGames = async (req, res, next) => {
     // По GET-запросу на эндпоинт /games найдём все документы категорий
     req.gamesArray = await games.find({}).populate("categories").populate("users");;

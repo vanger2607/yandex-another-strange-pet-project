@@ -1,6 +1,6 @@
 // Импортируем модель
 const categories = require("../models/category");
-const logger = require("@/logger")
+const logger = require("../logger")
 
 const findAllCategories = async (req, res, next) => {
     // По GET-запросу на эндпоинт /categories найдём все документы категорий

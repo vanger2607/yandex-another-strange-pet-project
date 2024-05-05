@@ -37,7 +37,7 @@ const updateUser = async (req, res, next) => {
         next();
     } catch (error) {
         res.setHeader("Content-Type", "application/json");
-        res.status(400).send(JSON.stringify({ message: "Ошибка обновления игры" }));
+        res.status(400).send(JSON.stringify({ message: "Ошибка обновления пользователя" }));
     }
 };
 

@@ -1,3 +1,4 @@
+const logger = require("../../logger");
 const checkEmptyFields = async (req, res, next) => {
     if (
         !req.body.title ||
@@ -43,4 +44,18 @@ const checkIfUsersAreSafe = async (req, res, next) => {
         res.status(400).send(JSON.stringify({ message: "Нельзя удалять пользователей или добавлять больше одного пользователя" }));
     }
 };
-module.exports = { checkEmptyFields, checkIfCategoriesAvaliable, checkIfUsersAreSafe }
+
+
+const checkIsGameExists = async (req, res, next) => {
+    const isInArray = req.gamesArray.find((game) => {
+        logger.info(`${req.body}`)
+      return req.body.link === game.link;
+    });
+    if (isInArray) {
+      res.setHeader("Content-Type", "application/json");
+          res.status(400).send(JSON.stringify({ message: "Игра с таким гейм-плеем уже существует" }));
+    } else {
+      next();
+    }
+  }; 
+module.exports = { checkEmptyFields, checkIfCategoriesAvaliable, checkIfUsersAreSafe, checkIsGameExists }

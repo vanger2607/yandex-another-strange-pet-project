@@ -2,7 +2,7 @@
 const usersRouter = require('express').Router();
 
 // Импортируем вспомогательные функции
-const { findAllUsers, createUser, findUserById, updateUse, deleteUser } = require('../midllewares');
+const { findAllUsers, createUser, findUserById, updateUser, deleteUser } = require('../midllewares');
 
 const { sendAllUsers, sendUserCreated, sendUserById, sendUserUpdated, sendUserDeleted } = require('../controllers');
 

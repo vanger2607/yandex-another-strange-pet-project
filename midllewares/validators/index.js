@@ -1,5 +1,6 @@
-const {checkEmptyFields, checkIfCategoriesAvaliable} = require("./games")
+const {checkEmptyFields, checkIfCategoriesAvaliable, checkIfUsersAreSafe} = require("./games")
 module.exports = {
     checkEmptyFields,
-    checkIfCategoriesAvaliable
+    checkIfCategoriesAvaliable,
+    checkIfUsersAreSafe
 };

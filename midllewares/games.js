@@ -1,11 +1,16 @@
 const games = require("../models/game");
 const logger = require("../logger")
 const findAllGames = async (req, res, next) => {
-    // По GET-запросу на эндпоинт /games найдём все документы категорий
-    req.gamesArray = await games.find({}).populate("categories").populate("users");;
-    logger.info(req.gamesArray);
+    logger.info("GET /games");
+    req.gamesArray = await games
+      .find({})
+      .populate("categories")
+      .populate({
+            path: "users",
+            select: "-password"
+          });
     next();
-};
+  }; 
 const createGame = async (req, res, next) => {
     logger.info("POST /games");
     try {

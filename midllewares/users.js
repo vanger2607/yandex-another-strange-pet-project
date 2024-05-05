@@ -44,6 +44,18 @@ const updateUser = async (req, res, next) => {
 };
 
 
+const deleteUser = async (req, res, next) => {
+    logger.info("DELETE /users/:id")
+    try {
+        // Методом findByIdAndDelete по id находим и удаляем документ из базы данных
+        req.user = await users.findByIdAndDelete(req.params.id);
+        next();
+    } catch (error) {
+        res.setHeader("Content-Type", "application/json");
+        res.status(400).send(JSON.stringify({ message: "Ошибка удаления игры" }));
+    }
+};
+
 
 // Экспортируем функцию поиска всех пользователей
-module.exports = { findAllUsers, createUser, findUserById, updateUser };
+module.exports = { findAllUsers, createUser, findUserById, updateUser, deleteUser };

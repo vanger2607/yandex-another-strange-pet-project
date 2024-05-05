@@ -13,4 +13,12 @@ const checkIsCategoryExists = async (req, res, next) => {
         next();
     }
 };
-module.exports = checkIsCategoryExists;
+const checkEmptyName = async (req, res, next) => {
+    if (!req.body.name) {
+        res.setHeader("Content-Type", "application/json");
+        res.status(400).send(JSON.stringify({ message: "Введите название категории" }));
+    } else {
+        next();
+    }
+};
+module.exports = {checkIsCategoryExists, checkEmptyName};

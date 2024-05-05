@@ -1,4 +1,4 @@
 const findAllUsers = require("./users");
-const findAllCategories = require("./categories");
+const {findAllCategories, createCategory} = require("./categories");
 const {findAllGames, createGame} = require("./games")
-module.exports = { findAllCategories, findAllUsers, findAllGames, createGame };
+module.exports = { findAllCategories, createCategory, findAllUsers, findAllGames, createGame };

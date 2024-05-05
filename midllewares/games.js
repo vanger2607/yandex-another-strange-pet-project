@@ -18,6 +18,15 @@ const createGame = async (req, res, next) => {
     }
 };
 
+const findGameById = async (req, res, next) => {
+    try {
+        req.game = await games.findById(req.params.id);
+    next();
+    } catch (error) {
+        res.setHeader("Content-Type", "application/json");
+        res.status(404).send(JSON.stringify({ message: "Игра не найдена" }));
+    }
+}; 
 
 // Экспортируем функцию поиска всех игр
-module.exports = { findAllGames, createGame }; 
+module.exports = { findAllGames, createGame, findGameById }; 

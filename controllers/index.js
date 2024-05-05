@@ -1,5 +1,5 @@
 const { sendAllUsers, sendUserCreated, sendUserById, sendUserUpdated } = require("./users");
-const { sendAllCategories, sendCategoryById, sendCategoryCreated, sendCategoryUpdated } = require("./categories");
+const { sendAllCategories, sendCategoryById, sendCategoryCreated, sendCategoryUpdated, sendCategoryDeleted } = require("./categories");
 const { sendAllGames, sendGameById, sendGameCreated, sendGameUpdated, sendGameDeleted } = require("./games")
 
 module.exports = {
@@ -7,6 +7,7 @@ module.exports = {
     sendCategoryCreated,
     sendCategoryById,
     sendCategoryUpdated,
+    sendCategoryDeleted,
     sendAllUsers,
     sendUserCreated,
     sendUserById,

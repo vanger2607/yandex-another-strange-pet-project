@@ -3,6 +3,7 @@ const users = require("../models/user");
 const logger = require("../logger")
 
 const findAllUsers = async (req, res, next) => {
+    logger.info("GET /users")
     // По GET-запросу на эндпоинт /users найдём все документы пользователей
     req.usersArray = await users.find({});
     next();
@@ -31,6 +32,7 @@ const findUserById = async (req, res, next) => {
     }
 };
 const updateUser = async (req, res, next) => {
+    logger.info("PUT /users/:id")
     try {
         // В метод передаём id из параметров запроса и объект с новыми свойствами
         req.user = await users.findByIdAndUpdate(req.params.id, req.body);

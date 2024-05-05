@@ -24,6 +24,7 @@ const createGame = async (req, res, next) => {
 };
 
 const findGameById = async (req, res, next) => {
+    logger.info("GET /games/:id");
     try {
         // Пробуем найти игру по id
         req.game = await games
@@ -39,6 +40,7 @@ const findGameById = async (req, res, next) => {
 };
 
 const updateGame = async (req, res, next) => {
+    logger.info("PUT /games/:id")
     try {
         // В метод передаём id из параметров запроса и объект с новыми свойствами
         req.game = await games.findByIdAndUpdate(req.params.id, req.body);
@@ -50,6 +52,7 @@ const updateGame = async (req, res, next) => {
 };
 
 const deleteGame = async (req, res, next) => {
+    logger.info("DELETE /games/:id")
     try {
         // Методом findByIdAndDelete по id находим и удаляем документ из базы данных
         req.game = await games.findByIdAndDelete(req.params.id);

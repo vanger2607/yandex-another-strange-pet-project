@@ -3,6 +3,7 @@ const categories = require("../models/category");
 const logger = require("../logger")
 
 const findAllCategories = async (req, res, next) => {
+    logger.info("GET /categories")
     // По GET-запросу на эндпоинт /categories найдём все документы категорий
     req.categoriesArray = await categories.find({});
     next();
@@ -20,7 +21,7 @@ const createCategory = async (req, res, next) => {
 };
 
 const findCategoryById = async (req, res, next) => {
-    console.log("GET /categories/:id");
+    logger.info("GET /categories/:id");
     try {
         req.category = await categories.findById(req.params.id);
         next();
@@ -31,6 +32,7 @@ const findCategoryById = async (req, res, next) => {
 };
 
 const updateCategory= async (req, res, next) => {
+    logger.info("PUT /categories/id")
     try {
         // В метод передаём id из параметров запроса и объект с новыми свойствами
       req.category = await categories.findByIdAndUpdate(req.params.id, req.body);

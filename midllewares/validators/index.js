@@ -1,4 +1,4 @@
-const {checkEmptyFields, checkIfCategoriesAvaliable, checkIfUsersAreSafe} = require("./games")
+const {checkEmptyFields, checkIfCategoriesAvaliable, checkIfUsersAreSafe, checkIsGameExists} = require("./games")
 const checkIsCategoryExists = require("./categories");
 const {checkEmptyNameAndEmailAndPassword, checkEmptyNameAndEmail} = require("./users");
 module.exports = {

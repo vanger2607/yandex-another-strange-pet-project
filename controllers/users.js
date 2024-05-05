@@ -16,5 +16,11 @@ const sendUserById = (req, res) => {
     res.end(JSON.stringify(req.user));
 };
 
+
+const sendUserUpdated = (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).send(JSON.stringify({ message: "Пользователь обновлён" }));
+};
+
 // Экспортируем контроллеры
-module.exports = { sendAllUsers, sendUserCreated, sendUserById };
+module.exports = { sendAllUsers, sendUserCreated, sendUserById, sendUserUpdated };

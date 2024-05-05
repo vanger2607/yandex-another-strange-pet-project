@@ -14,4 +14,17 @@ const checkEmptyNameAndEmail = async (req, res, next) => {
         next();
     }
 };
-module.exports = {checkEmptyNameAndEmailAndPassword, checkEmptyNameAndEmail};
+
+const checkIsUserExists = async (req, res, next) => {
+    const isInArray = req.usersArray.find((user) => {
+        return req.body.email === user.email;
+    });
+    if (isInArray) {
+        res.setHeader("Content-Type", "application/json");
+        res.status(400).send(JSON.stringify({ message: "Пользователь с таким email уже существует" }));
+    } else {
+        next();
+    }
+};
+
+module.exports = { checkEmptyNameAndEmailAndPassword, checkEmptyNameAndEmail, checkIsUserExists };

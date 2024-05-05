@@ -1,6 +1,6 @@
 const {checkEmptyFields, checkIfCategoriesAvaliable, checkIfUsersAreSafe, checkIsGameExists} = require("./games")
 const checkIsCategoryExists = require("./categories");
-const {checkEmptyNameAndEmailAndPassword, checkEmptyNameAndEmail} = require("./users");
+const {checkEmptyNameAndEmailAndPassword, checkEmptyNameAndEmail, checkIsUserExists} = require("./users");
 module.exports = {
     checkEmptyFields,
     checkIsGameExists,
@@ -9,6 +9,7 @@ module.exports = {
     checkIsCategoryExists,
     checkEmptyNameAndEmailAndPassword,
     checkEmptyNameAndEmail,
+    checkIsUserExists,
 
   
 };

@@ -5,6 +5,9 @@ const sendAllCategories = (req, res) => {
   // которые подготовим в миддлваре findAllCategories
   res.end(JSON.stringify(req.categoriesArray));
 };
-
-// Экспортируем контроллер
-module.exports = sendAllCategories;
+const sendCategoryCreated = (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    res.end(JSON.stringify(req.category));
+  }; 
+// Экспортируем контроллеры
+module.exports = {sendAllCategories, sendCategoryCreated};

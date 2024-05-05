@@ -50,8 +50,9 @@ const deleteCategory = async (req, res, next) => {
         req.category = await categories.findByIdAndDelete(req.params.id);
         next();
     } catch (error) {
-        res.setHeader("Content-Type", "application/json");
-        res.status(400).send(JSON.stringify({ message: "Ошибка удаления игры" }));
+
+      res.setHeader("Content-Type", "application/json");
+      res.status(400).send(JSON.stringify({ message: "Ошибка обновления категории" }));
     }
 };
 

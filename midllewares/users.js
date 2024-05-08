@@ -3,11 +3,10 @@ const users = require("../models/user");
 const logger = require("../logger")
 
 const findAllUsers = async (req, res, next) => {
-    logger.info("GET /users")
-    // По GET-запросу на эндпоинт /users найдём все документы пользователей
-    req.usersArray = await users.find({});
+    logger.info("GET /api/users");
+    req.usersArray = await users.find({}, { password: 0 });
     next();
-};
+  }; 
 
 const createUser = async (req, res, next) => {
     logger.info("POST /users");

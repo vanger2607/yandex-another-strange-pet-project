@@ -3,5 +3,13 @@ const gamesRouter = require("./games");
 const usersRouter = require("./users");
 const authRouter = require("./auth");
 const apiRouter = require("./apiRouter");
+const pagesRouter = require("./pages");
 
-module.exports = { categoriesRouter, gamesRouter, usersRouter, authRouter, apiRouter };
+module.exports = {
+    categoriesRouter,
+    gamesRouter,
+    usersRouter,
+    authRouter,
+    apiRouter,
+    pagesRouter,
+};

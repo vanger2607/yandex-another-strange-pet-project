@@ -33,7 +33,7 @@ const login = (req, res) => {
 const sendIndex = (req, res) => {
     if (req.cookies.jwt) {
         try {
-            jwt.verify(req.cookies.jwt, "some-secret-key");
+            jwt.verify(req.cookies.jwt, CONFIG.SECRET_KEY);
             return res.redirect("/admin/dashboard");
         } catch (err) {
             return res.sendFile(path.join(__dirname, "../public/index.html"));

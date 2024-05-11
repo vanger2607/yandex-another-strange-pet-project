@@ -9,6 +9,7 @@ const {
     updateUser,
     deleteUser,
     hashPassword,
+    checkAuth,
 } = require("../midllewares");
 
 const {
@@ -33,19 +34,18 @@ usersRouter.post(
     findAllUsers,
     checkIsUserExists,
     checkEmptyNameAndEmailAndPassword,
+    checkAuth,
     hashPassword,
     createUser,
     sendUserCreated
-  ); 
-
+);
 usersRouter.put(
     "/users/:id",
     checkEmptyNameAndEmail,
+    checkAuth,
     updateUser,
     sendUserUpdated
 );
+usersRouter.delete("/users/:id", checkAuth, deleteUser, sendUserDeleted);
 
-usersRouter.delete("/users/:id", deleteUser, sendUserDeleted);
-
-// Экспортируем роут для использования в приложении — app.js
 module.exports = usersRouter;

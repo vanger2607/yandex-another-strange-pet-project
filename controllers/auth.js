@@ -4,15 +4,14 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 
 const CONFIG = require("../config");
+const SECRET_KEY = CONFIG.SECRET_KEY;
 const login = (req, res) => {
     const { email, password } = req.body;
-
     users
         .findUserByCredentials(email, password)
         .then((user) => {
             /* use this command to create secretKey:
                           node -e "console.log(require('crypto').randomBytes(256).toString('base64'));" */
-            const SECRET_KEY = CONFIG.SECRET_KEY;
             const token = jwt.sign({ _id: user._id }, SECRET_KEY, {
                 expiresIn: 3600,
             });
@@ -34,12 +33,12 @@ const login = (req, res) => {
 const sendIndex = (req, res) => {
     if (req.cookies.jwt) {
         try {
-            jwt.verify(req.cookies.jwt, "some-secret-key");
+            jwt.verify(req.cookies.jwt, SECRET_KEY);
             return res.sendFile(
                 path.join(__dirname, "../public/admin/dashboard.html")
             );
         } catch (err) {
-            res.sendFile(path.join(__dirname, "../public/index.html"));
+            return res.sendFile(path.join(__dirname, "../public/index.html"));
         }
     }
     res.sendFile(path.join(__dirname, "../public/index.html"));

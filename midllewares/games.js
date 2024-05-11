@@ -21,7 +21,6 @@ const findAllGames = async (req, res, next) => {
 const createGame = async (req, res, next) => {
     logger.info("POST /games");
     try {
-        logger.info(req.body);
         req.game = await games.create(req.body);
         next();
     } catch (error) {

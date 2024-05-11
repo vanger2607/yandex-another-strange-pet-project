@@ -8,6 +8,7 @@ const {
     findCategoryById,
     updateCategory,
     deleteCategory,
+    checkAuth,
 } = require("../midllewares");
 
 const {
@@ -29,16 +30,21 @@ categoriesRouter.post(
     findAllCategories,
     checkIsCategoryExists,
     checkEmptyName,
+    checkAuth,
     createCategory,
     sendCategoryCreated
 );
-
 categoriesRouter.put(
     "/categories/:id",
     checkEmptyName,
+    checkAuth,
     updateCategory,
     sendCategoryUpdated
 );
-categoriesRouter.delete("/categories/:id", deleteCategory, sendCategoryDeleted);
-// Экспортируем роут для использования в приложении — app.js
+categoriesRouter.delete(
+    "/categories/:id",
+    checkAuth,
+    deleteCategory,
+    sendCategoryDeleted
+);
 module.exports = categoriesRouter;

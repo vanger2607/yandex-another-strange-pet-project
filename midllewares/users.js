@@ -80,4 +80,5 @@ module.exports = {
     findUserById,
     updateUser,
     deleteUser,
+    hashPassword,
 };

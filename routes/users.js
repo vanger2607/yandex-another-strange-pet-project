@@ -8,6 +8,7 @@ const {
     findUserById,
     updateUser,
     deleteUser,
+    hashPassword,
 } = require("../midllewares");
 
 const {
@@ -32,9 +33,10 @@ usersRouter.post(
     findAllUsers,
     checkIsUserExists,
     checkEmptyNameAndEmailAndPassword,
+    hashPassword,
     createUser,
     sendUserCreated
-);
+  ); 
 
 usersRouter.put(
     "/users/:id",

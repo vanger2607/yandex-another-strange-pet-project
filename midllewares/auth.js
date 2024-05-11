@@ -1,4 +1,4 @@
-const CONFIG = require("@/config.js");
+const CONFIG = require("../config");
 const SECRET_KEY = CONFIG.SECRET_KEY;
 const checkAuth = (req, res, next) => {
   const { authorization } = req.headers;

@@ -1,16 +1,23 @@
 const games = require("../models/game");
-const logger = require("../logger")
+const logger = require("../logger");
 const findAllGames = async (req, res, next) => {
+    // Поиск всех игр в проекте по заданной категории
     logger.info("GET /games");
-    req.gamesArray = await games
-        .find({})
-        .populate("categories")
-        .populate({
-            path: "users",
-            select: "-password"
-        });
+    if (req.query["categories.name"]) {
+        req.gamesArray = await games.findGameByCategory(
+            req.query["categories.name"]
+        );
+        next();
+        return;
+    }
+    // Поиск всех игр в проекте
+    req.gamesArray = await games.find({}).populate("categories").populate({
+        path: "users",
+        select: "-password", // Исключим данные о паролях пользователей
+    });
     next();
 };
+
 const createGame = async (req, res, next) => {
     logger.info("POST /games");
     try {
@@ -40,7 +47,7 @@ const findGameById = async (req, res, next) => {
 };
 
 const updateGame = async (req, res, next) => {
-    logger.info("PUT /games/:id")
+    logger.info("PUT /games/:id");
     try {
         // В метод передаём id из параметров запроса и объект с новыми свойствами
         req.game = await games.findByIdAndUpdate(req.params.id, req.body);
@@ -52,7 +59,7 @@ const updateGame = async (req, res, next) => {
 };
 
 const deleteGame = async (req, res, next) => {
-    logger.info("DELETE /games/:id")
+    logger.info("DELETE /games/:id");
     try {
         // Методом findByIdAndDelete по id находим и удаляем документ из базы данных
         req.game = await games.findByIdAndDelete(req.params.id);
@@ -70,4 +77,4 @@ module.exports = {
     findGameById,
     updateGame,
     deleteGame,
-}; 
+};

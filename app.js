@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 const { usersRouter, gamesRouter, categoriesRouter } = require("./routes");
+const cors = require("./midllewares").cors
 
 const connectToDatabase = require("./database/connect");
 
@@ -16,6 +17,7 @@ const app = express();
 connectToDatabase();
 
 app.use(
+    cors,
     bodyParser.json(),
     express.static(path.join(__dirname, "public")),
     usersRouter,

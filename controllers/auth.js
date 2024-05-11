@@ -1,6 +1,6 @@
 const users = require("../models/user.js");
 const jwt = require("jsonwebtoken");
-const CONFIG = require("@/config")
+const CONFIG = require("@/config.js");
 const login = (req, res) => {
     const { email, password } = req.body;
 
@@ -8,7 +8,7 @@ const login = (req, res) => {
         .findUserByCredentials(email, password)
         .then((user) => {
             /* use this command to create secretKey:
-              node -e "console.log(require('crypto').randomBytes(256).toString('base64'));" */
+                    node -e "console.log(require('crypto').randomBytes(256).toString('base64'));" */
             const SECRET_KEY = CONFIG.SECRET_KEY;
             const token = jwt.sign({ _id: user._id }, SECRET_KEY, {
                 expiresIn: 3600,

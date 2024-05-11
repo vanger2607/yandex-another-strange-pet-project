@@ -23,13 +23,12 @@ const createUser = async (req, res, next) => {
 const findUserById = async (req, res, next) => {
     logger.info("GET /users/:id");
     try {
-        req.user = await users.findById(req.params.id);
-        next();
+      req.user = await users.findById(req.params.id, { password: 0 });
+      next();
     } catch (error) {
-        res.setHeader("Content-Type", "application/json");
-        res.status(404).send(JSON.stringify({ message: "Пользователь не найден" }));
+      res.status(404).send("User not found");
     }
-};
+  }; 
 const updateUser = async (req, res, next) => {
     logger.info("PUT /users/:id")
     try {

@@ -1,6 +1,16 @@
 const CONFIG = require("../config");
 const jwt = require("jsonwebtoken");
 const SECRET_KEY = CONFIG.SECRET_KEY;
+
+const checkCookiesJWT = (req, res, next) => {
+  if (!req.cookies.jwt) {
+    return res.redirect("/");
+  }
+  req.headers.authorization = `Bearer ${req.cookies.jwt}`;
+  next();
+};
+
+
 const checkAuth = (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith("Bearer ")) {
@@ -17,4 +27,4 @@ const checkAuth = (req, res, next) => {
   next();
 };
 
-module.exports = checkAuth;
+module.exports = { checkAuth, checkCookiesJWT };

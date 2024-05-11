@@ -1,7 +1,7 @@
 const { findAllUsers, findUserById, createUser, updateUser, deleteUser, hashPassword } = require("./users");
 const { findAllCategories, findCategoryById, createCategory, updateCategory, deleteCategory } = require("./categories");
 const { findAllGames, findGameById, createGame, updateGame, deleteGame } = require("./games")
-const checkAuth = require("./auth");
+const {checkAuth, checkCookiesJWT} = require("./auth");
 const cors = require("./cors")
 module.exports = {
     cors,
@@ -17,6 +17,7 @@ module.exports = {
     deleteUser,
     hashPassword,
     checkAuth,
+    checkCookiesJWT,
     findAllGames,
     findGameById,
     createGame,

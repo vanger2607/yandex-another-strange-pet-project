@@ -33,18 +33,22 @@ const login = (req, res) => {
 const sendIndex = (req, res) => {
     if (req.cookies.jwt) {
         try {
-            jwt.verify(req.cookies.jwt, SECRET_KEY);
-            return res.sendFile(
-                path.join(__dirname, "../public/admin/dashboard.html")
-            );
+            jwt.verify(req.cookies.jwt, CONFIG.SECRET_KEY);
+            return res.redirect("/admin/dashboard");
         } catch (err) {
             return res.sendFile(path.join(__dirname, "../public/index.html"));
         }
     }
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+    return res.sendFile(path.join(__dirname, "../public/index.html"));
+};
+
+
+const sendDashboard = (req, res) => {
+    return res.sendFile(path.join(__dirname, "../public/admin/dashboard.html"));
 };
 
 module.exports = {
     login,
     sendIndex,
+    sendDashboard,
 };

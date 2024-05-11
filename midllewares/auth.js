@@ -8,7 +8,7 @@ const checkCookiesJWT = (req, res, next) => {
   }
   req.headers.authorization = `Bearer ${req.cookies.jwt}`;
   next();
-}; 
+};
 
 
 const checkAuth = (req, res, next) => {
@@ -27,4 +27,4 @@ const checkAuth = (req, res, next) => {
   next();
 };
 
-module.exports = {checkAuth, checkCookiesJWT};
+module.exports = { checkAuth, checkCookiesJWT };

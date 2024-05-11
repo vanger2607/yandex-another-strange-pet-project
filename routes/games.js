@@ -6,6 +6,7 @@ const {
     findGameById,
     updateGame,
     deleteGame,
+    checkAuth,
 } = require("../midllewares");
 const {
     sendAllGames,
@@ -28,6 +29,7 @@ gamesRouter.post(
     checkIsGameExists,
     checkIfCategoriesAvaliable,
     checkEmptyFields,
+    checkAuth,
     createGame,
     sendGameCreated
 );
@@ -38,11 +40,13 @@ gamesRouter.put(
     checkIfUsersAreSafe,
     checkIfCategoriesAvaliable,
     checkEmptyFields,
+    checkAuth,
     updateGame,
     sendGameUpdated
 );
 gamesRouter.delete(
     "/games/:id", // Слушаем запросы по эндпоинту
+    checkAuth,
     deleteGame,
     sendGameDeleted // Тут будут функция удаления элементов из MongoDB и ответ клиенту
 );

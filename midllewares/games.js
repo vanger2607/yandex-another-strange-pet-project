@@ -10,7 +10,10 @@ const findAllGames = async (req, res, next) => {
         next();
         return;
     }
+    
     // Поиск всех игр в проекте
+    logger.info(`None category`)
+    logger.info(req.query)
     req.gamesArray = await games.find({}).populate("categories").populate({
         path: "users",
         select: "-password", // Исключим данные о паролях пользователей

@@ -3,7 +3,8 @@ dotenv.config({path: "./config.env"});
 module.exports = {
   PORT: process.env.PORT,
   DB_URL: process.env.DB_URL,
-  SECRET_KEY: process.env.SECRET_KEY,
+  SECRET_KEY: process.env.SECRET_KEY, /* use this command to create secretKey:
+  node -e "console.log(require('crypto').randomBytes(256).toString('base64'));" */
   ALLOWED_CORS: process.env.ALLOWED_CORS,
 };
 

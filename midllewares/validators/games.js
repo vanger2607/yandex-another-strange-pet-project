@@ -1,4 +1,13 @@
 const logger = require("../../logger");
+
+const checkIsVoteRequest = async (req, res, next) => {
+    // Если в запросе присылают только поле users
+    if (Object.keys(req.body).length === 1 && req.body.users) {
+        req.isVoteRequest = true;
+    }
+    next();
+};
+
 const checkEmptyFields = async (req, res, next) => {
     if (
         !req.body.title ||
@@ -21,7 +30,9 @@ const checkIfCategoriesAvaliable = async (req, res, next) => {
     // Проверяем наличие жанра у игры
     if (!req.body.categories || req.body.categories.length === 0) {
         res.setHeader("Content-Type", "application/json");
-        res.status(400).send(JSON.stringify({ message: "Выбери хотя бы одну категорию" }));
+        res
+            .status(400)
+            .send(JSON.stringify({ message: "Выбери хотя бы одну категорию" }));
     } else {
         next();
     }
@@ -41,21 +52,37 @@ const checkIfUsersAreSafe = async (req, res, next) => {
         return;
     } else {
         res.setHeader("Content-Type", "application/json");
-        res.status(400).send(JSON.stringify({ message: "Нельзя удалять пользователей или добавлять больше одного пользователя" }));
+        res
+            .status(400)
+            .send(
+                JSON.stringify({
+                    message:
+                        "Нельзя удалять пользователей или добавлять больше одного пользователя",
+                })
+            );
     }
 };
 
-
 const checkIsGameExists = async (req, res, next) => {
     const isInArray = req.gamesArray.find((game) => {
-        logger.info(`${req.body}`)
-      return req.body.link === game.link;
+        logger.info(`${req.body}`);
+        return req.body.link === game.link;
     });
     if (isInArray) {
-      res.setHeader("Content-Type", "application/json");
-          res.status(400).send(JSON.stringify({ message: "Игра с таким гейм-плеем уже существует" }));
+        res.setHeader("Content-Type", "application/json");
+        res
+            .status(400)
+            .send(
+                JSON.stringify({ message: "Игра с таким гейм-плеем уже существует" })
+            );
     } else {
-      next();
+        next();
     }
-  }; 
-module.exports = { checkEmptyFields, checkIfCategoriesAvaliable, checkIfUsersAreSafe, checkIsGameExists }
+};
+module.exports = {
+    checkEmptyFields,
+    checkIfCategoriesAvaliable,
+    checkIfUsersAreSafe,
+    checkIsGameExists,
+    checkIsVoteRequest,
+};

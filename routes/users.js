@@ -27,7 +27,7 @@ const {
 } = require("../midllewares/validators");
 // Обрабатываем GET-запрос с роутом '/categories'
 usersRouter.get("/users", findAllUsers, sendAllUsers);
-usersRouter.get("/users/:id", findUserById, sendUserById);
+usersRouter.get("/users/:id", checkAuth,findUserById, sendUserById);
 
 usersRouter.post(
     "/users",

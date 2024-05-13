@@ -51,12 +51,14 @@ const checkIfCategoriesAvaliable = async (req, res, next) => {
 const checkIfUsersAreSafe = async (req, res, next) => {
     // Проверим, есть ли users в теле запроса
     if (!req.body.users) {
+
         next();
         return;
     }
     // Cверим, на сколько изменился массив пользователей в запросе
     // с актуальным значением пользователей в объекте game
     // Если больше чем на единицу, вернём статус ошибки 400 с сообщением
+    
     if (req.body.users.length - 1 === req.game.users.length) {
         next();
         return;
@@ -89,6 +91,8 @@ const checkIsGameExists = async (req, res, next) => {
         next();
     }
 };
+
+
 module.exports = {
     checkEmptyFields,
     checkIfCategoriesAvaliable,

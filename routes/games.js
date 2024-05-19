@@ -20,6 +20,7 @@ const {
     checkIfCategoriesAvaliable,
     checkEmptyFields,
     checkIfUsersAreSafe,
+    checkIsVoteRequest,
 } = require("../midllewares/validators");
 gamesRouter.get("/games", findAllGames, sendAllGames);
 gamesRouter.get("/games/:id", findGameById, sendGameById);
@@ -38,6 +39,7 @@ gamesRouter.put(
     "/games/:id",
     findGameById,
     checkIfUsersAreSafe,
+    checkIsVoteRequest,
     checkIfCategoriesAvaliable,
     checkEmptyFields,
     checkAuth,

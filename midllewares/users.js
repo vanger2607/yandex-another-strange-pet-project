@@ -41,12 +41,17 @@ const createUser = async (req, res, next) => {
 const findUserById = async (req, res, next) => {
     logger.info("GET /users/:id");
     try {
-        req.user = await users.findById(req.params.id, { password: 0 });
+        if (req.params.id === "-1"){
+            req.user = await users.findById(req.user._id, { password: 0 });}
+            
+        else {
+            req.user = await users.findById(req.params.id, { password: 0 });}
         next();
     } catch (error) {
         res.status(404).send("User not found");
     }
 };
+
 const updateUser = async (req, res, next) => {
     logger.info("PUT /users/:id");
     try {
